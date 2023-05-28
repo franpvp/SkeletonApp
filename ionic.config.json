@@ -1,5 +1,7 @@
 {
   "name": "SkeletonApp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
