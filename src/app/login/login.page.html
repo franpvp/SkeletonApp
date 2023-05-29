@@ -17,63 +17,69 @@
   </ion-header>
   <ion-content [fullscreen]="true">
     <ion-card>
-      <ion-card-header>
-        <ion-title>Iniciar Sesión</ion-title>
-      </ion-card-header>
       <ion-card-content>
         <!-- Input Usuario -->
-        <form #myForm="ngForm">
-          <ion-row>
-            <ion-col>
-              <ion-item>
+        <ion-list>
+          <form #myForm="ngForm">
+            <ion-card-header>
+              <ion-title class="titulo-login">Iniciar Sesión</ion-title>
+            </ion-card-header>
+            <ion-row>
+              <ion-col>
                 <ion-input
                   class="usuario"
+                  name="usuario"
                   [(ngModel)]="user.usuario"
                   type="text"
                   fill="outline"
                   label="Usuario"
-                  labelPlacement="floating"
+                  label-placement="floating"
                   pattern="[a-zA-Z0-9]+"
                   minlength="3"
                   maxlength="8"
-                  ngModel>
+                  placeholder="Ingrese nombre de usuario"
+                  helper-text="* El nombre de usuario debe contener un largo mínimo de 3 carácteres y un máximo de 8, puede contener letras y números."
+                  error-text="Porfavor ingrese un nombre de usuario válido"
+                  required>
                 </ion-input>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-          
-          <!-- Input Contraseña -->
-          <ion-row>
-            <ion-col>
-              <ion-item>
+              </ion-col>
+            </ion-row>
+            <!-- Input Contraseña -->
+            <ion-row>
+              <ion-col>
                 <ion-input
                   [(ngModel)]="user.password"
                   type="password"
+                  name="password" 
                   fill="outline"
                   label="Contraseña"
-                  labelPlacement="floating"
-                  ngModel>
+                  label-placement="floating"
+                  placeholder="Ingrese contraseña"
+                  pattern="[0-9]{4}"
+                  maxlength="4"
+                  helper-text="La contraseña debe poseer sólo 4 dígitos numéricos."
+                  error-text="Porfavor ingrese una contraseña válida."
+                  required>
                 </ion-input>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-          
-          <!-- Botón Ingresar -->
-          <ion-row class="ion-justify-content-center ion-align-items-center">
-            <ion-col>
-              <div class="ion-text-center">
-                <ion-button (click)="ingresar()" expand="full" shape="round">Ingresar</ion-button>
-              </div>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <div class="ion-text-center">
-                <a href="#">Crea tu cuenta gratis</a>
-              </div>
-            </ion-col>
-          </ion-row>
-        </form>
+              </ion-col>
+            </ion-row>
+            <!-- Botón Ingresar -->
+            <ion-row class="ion-justify-content-center ion-align-items-center">
+              <ion-col>
+                <div class="ion-text-center">
+                  <ion-button (click)="ingresar()" shape="round">Ingresar</ion-button>
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <div class="ion-text-center">
+                  <a href="#">Crea tu cuenta gratis</a>
+                </div>
+              </ion-col>
+            </ion-row>
+          </form>
+        </ion-list>
       </ion-card-content>
     </ion-card>
   </ion-content>

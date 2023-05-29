@@ -1,10 +1,14 @@
 <ion-menu contentId="main-content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu Content</ion-title>
+      <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content class="ion-padding">This is the menu content.</ion-content>
+  <ion-content class="ion-padding">
+    <ion-menu-toggle>
+      <ion-button (click)="toLogin()" class="">Iniciar Sesión</ion-button>
+    </ion-menu-toggle>
+  </ion-content>
 </ion-menu>
 <div class="ion-page" id="main-content">
   <ion-header>
@@ -12,22 +16,102 @@
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title>SkeletonApp</ion-title>
+      <ion-title>Bienvenido!</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content [fullscreen]="true">
-    <ion-header collapse="condense">
-      <ion-toolbar>
-        <ion-title size="large"></ion-title>
-      </ion-toolbar>
-    </ion-header>
-  
-    <ion-button (click)="toLogin()" class="">Login</ion-button>
-  
-    <div id="container">
-      <strong>Ready to create an app?</strong>
-      <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-    </div>
+    <ion-card>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <p>Usuario: {{ data.usuario }}</p>
+          </ion-item>
+          <ion-card-header>
+            <ion-title class="titulo-info ion-text-center">Información adicional</ion-title>
+          </ion-card-header>
+          <!-- Input Nombre -->
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label position="stacked">Nombre</ion-label>
+                <ion-input
+                  class="nombre"
+                  name="nombre"
+                  type="text"
+                  fill="outline"
+                  placeholder="Ingrese Nombre"
+                  [(ngModel)]="datos_usuario.nombre"
+                  required>
+                </ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          
+          <!-- Input Apellido -->
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label position="stacked">Apellido</ion-label>
+                <ion-input
+                  class="apellido"
+                  name="apellido"
+                  type="text"
+                  fill="outline"
+                  placeholder="Ingrese Apellido"
+                  [(ngModel)]="datos_usuario.apellido"
+                  required>
+                </ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <!-- Select Nivel Educación -->
+          <ion-row>
+            <ion-col class="ion-justify-content-center">
+              <ion-item>
+                <ion-label position="stacked">Nivel Educación</ion-label>
+                <ion-select aria-label="Nivel" placeholder="Seleccione Nivel">
+                  <ion-select-option value="basicaCompleta">Básica Completa</ion-select-option>
+                  <ion-select-option value="basicaIncompleta">Básica Incompleta</ion-select-option>
+                  <ion-select-option value="mediaCompleta">Media Completa</ion-select-option>
+                  <ion-select-option value="mediaIncompleta">Media Incompleta</ion-select-option>
+                  <ion-select-option value="tecnicaCompleta">Técnica Completa</ion-select-option>
+                  <ion-select-option value="tecnicaIncompleta">Técnica Incompleta</ion-select-option>
+                  <ion-select-option value="superiorCompleta">Superior Completa</ion-select-option>
+                  <ion-select-option value="superiorIncompleta">Superior Incompleta</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <!-- Input Fecha de Nacimiento -->
+          <ion-row >
+            <ion-col class="ion-text-center">
+              <ion-item>
+                <ion-label position="stacked">Fecha de Nacimiento</ion-label>
+                <ion-datetime presentation="date"></ion-datetime>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          
+          <ion-row class="ion-justify-content-center ion-align-items-center">
+            <!-- Botón Limpiar -->
+            <ion-col size="5" class="ion-text-center">
+              <ion-button shape="round">Limpiar</ion-button>
+            </ion-col>
+             <!-- Botón Mostrar -->
+            <ion-col size="5" class="ion-text-center">
+              <ion-button (click)="setOpen(true)" shape="round">Mostrar</ion-button>
+              <ion-alert
+                [isOpen]="isAlertOpen"
+                header="Usuario"
+                message="Su nombre es {{ datos_usuario.nombre }} {{datos_usuario.apellido}}"
+                [buttons]="alertButtons"
+                (didDismiss)="setOpen(false)"
+              ></ion-alert>
+            </ion-col>
+          </ion-row>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
   </ion-content>
 </div>
 
