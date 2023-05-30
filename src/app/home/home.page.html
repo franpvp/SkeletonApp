@@ -91,8 +91,12 @@
           <ion-row >
             <ion-col class="ion-text-center">
               <ion-item>
-                <ion-label position="stacked">Fecha de Nacimiento</ion-label>
-                <ion-datetime [(ngModel)]="fechaNac" (ionChange)="onFechaNacimientoChange($event)" presentation="date"></ion-datetime>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Fecha de Nacimiento</mat-label>
+                  <input matInput [matDatepicker]="picker">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker touchUi #picker></mat-datepicker>
+                </mat-form-field>                
               </ion-item>
             </ion-col>
           </ion-row>
