@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginPage } from '../login/login.page';
 import { AlertController, AnimationController } from '@ionic/angular';
+import { MatDatepicker, MatDatepickerInputEvent } from '@angular/material/datepicker';
+
 
 @Component({
   selector: 'app-home',
@@ -15,14 +17,14 @@ export class HomePage {
   nombre: string | undefined;
   apellido: string | undefined;
   educacion: string | undefined;
-  fechaNac: string | undefined;
+  fechaNac: Date | undefined;
   animating: boolean | undefined;
 
   datos_usuario = {
     nombre: "",
     apellido: "",
     educacion: "",
-    fechaNac: ""
+    fechaNac: new Date
   }
   
 
@@ -44,18 +46,23 @@ export class HomePage {
     this.isAlertOpen = isOpen;
   }
 
+  // Método para borrar y animar campos Nombre y Apellido
   borrarCampos() {
     this.animating = true;
     setTimeout(() => {
-      this.datos_usuario.nombre = '';
-      this.datos_usuario.apellido = '';
+      
       this.animating = false;
     }, 1000);
 
-    this.datos_usuario.educacion = '';
-    this.datos_usuario.fechaNac = '';
+    this.datos_usuario.nombre = '';
+    this.datos_usuario.apellido = '';
+
   }
-  
+
+  onFechaNacimientoChange(event: any) {
+    // Acciones a realizar cuando se produce un cambio en la fecha
+    console.log('Fecha seleccionada:', event.detail.value);
+  }
 
   toLogin(){
     this.router.navigateByUrl('/login');

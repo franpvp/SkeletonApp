@@ -92,7 +92,7 @@
             <ion-col class="ion-text-center">
               <ion-item>
                 <ion-label position="stacked">Fecha de Nacimiento</ion-label>
-                <ion-datetime [(ngModel)]="fechaNac" presentation="date"></ion-datetime>
+                <ion-datetime [(ngModel)]="fechaNac" (ionChange)="onFechaNacimientoChange($event)" presentation="date"></ion-datetime>
               </ion-item>
             </ion-col>
           </ion-row>
