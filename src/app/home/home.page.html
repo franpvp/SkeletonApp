@@ -24,7 +24,7 @@
       <ion-card-content>
         <ion-list>
           <ion-item>
-            <p>Usuario: {{ data.usuario }}</p>
+            <p>Usuario: {{ data.usuario }} </p>
           </ion-item>
           <ion-card-header>
             <ion-title class="titulo-info ion-text-center">Información adicional</ion-title>
@@ -32,15 +32,18 @@
           <!-- Input Nombre -->
           <ion-row>
             <ion-col>
-              <ion-item>
+              <ion-item [ngClass]="{ 'shake': animating }">
                 <ion-label position="stacked">Nombre</ion-label>
                 <ion-input
+                  id="nombre"
                   class="nombre"
                   name="nombre"
                   type="text"
+                  pattern="[A-Za-z]+"
                   fill="outline"
                   placeholder="Ingrese Nombre"
                   [(ngModel)]="datos_usuario.nombre"
+                  error-text="Porfavor ingrese su nombre."
                   required>
                 </ion-input>
               </ion-item>
@@ -50,15 +53,17 @@
           <!-- Input Apellido -->
           <ion-row>
             <ion-col>
-              <ion-item>
+              <ion-item [ngClass]="{ 'shake': animating }">
                 <ion-label position="stacked">Apellido</ion-label>
                 <ion-input
                   class="apellido"
                   name="apellido"
                   type="text"
+                  pattern="[A-Za-z]+"
                   fill="outline"
                   placeholder="Ingrese Apellido"
                   [(ngModel)]="datos_usuario.apellido"
+                  error-text="Porfavor ingrese su apellido paterno."
                   required>
                 </ion-input>
               </ion-item>
@@ -69,15 +74,15 @@
             <ion-col class="ion-justify-content-center">
               <ion-item>
                 <ion-label position="stacked">Nivel Educación</ion-label>
-                <ion-select aria-label="Nivel" placeholder="Seleccione Nivel">
-                  <ion-select-option value="basicaCompleta">Básica Completa</ion-select-option>
-                  <ion-select-option value="basicaIncompleta">Básica Incompleta</ion-select-option>
-                  <ion-select-option value="mediaCompleta">Media Completa</ion-select-option>
-                  <ion-select-option value="mediaIncompleta">Media Incompleta</ion-select-option>
-                  <ion-select-option value="tecnicaCompleta">Técnica Completa</ion-select-option>
-                  <ion-select-option value="tecnicaIncompleta">Técnica Incompleta</ion-select-option>
-                  <ion-select-option value="superiorCompleta">Superior Completa</ion-select-option>
-                  <ion-select-option value="superiorIncompleta">Superior Incompleta</ion-select-option>
+                <ion-select [(ngModel)]="educacion" aria-label="Nivel" placeholder="Seleccione Nivel">
+                  <ion-select-option value="1">Básica Completa</ion-select-option>
+                  <ion-select-option value="2">Básica Incompleta</ion-select-option>
+                  <ion-select-option value="3">Media Completa</ion-select-option>
+                  <ion-select-option value="4">Media Incompleta</ion-select-option>
+                  <ion-select-option value="5">Técnica Completa</ion-select-option>
+                  <ion-select-option value="6">Técnica Incompleta</ion-select-option>
+                  <ion-select-option value="7">Superior Completa</ion-select-option>
+                  <ion-select-option value="8">Superior Incompleta</ion-select-option>
                 </ion-select>
               </ion-item>
             </ion-col>
@@ -87,7 +92,7 @@
             <ion-col class="ion-text-center">
               <ion-item>
                 <ion-label position="stacked">Fecha de Nacimiento</ion-label>
-                <ion-datetime presentation="date"></ion-datetime>
+                <ion-datetime [(ngModel)]="fechaNac" presentation="date"></ion-datetime>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -95,7 +100,7 @@
           <ion-row class="ion-justify-content-center ion-align-items-center">
             <!-- Botón Limpiar -->
             <ion-col size="5" class="ion-text-center">
-              <ion-button shape="round">Limpiar</ion-button>
+              <ion-button (click)="borrarCampos()" shape="round">Limpiar</ion-button>
             </ion-col>
              <!-- Botón Mostrar -->
             <ion-col size="5" class="ion-text-center">
@@ -113,6 +118,11 @@
       </ion-card-content>
     </ion-card>
   </ion-content>
+  <ion-footer>
+    <ion-toolbar>
+      <ion-title>App desarrollada por Francisca Valdivia</ion-title>
+    </ion-toolbar>
+  </ion-footer>
 </div>
 
 
